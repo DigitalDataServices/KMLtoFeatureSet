@@ -24,7 +24,7 @@ The "KML.png" is provided as an optional graphic for the Toolbar Button.
 The following steps show how to add a the KML Import Workflow to a Geocortex Site with an HTML5 Viewer as a Toolbar Button
 
 - Start your Geocortex Essentials Manager and open the Site that you will be adding the KML workflow to.
-  - ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/01-workflow-site-tab.png)
+  ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/01-workflow-site-tab.png)
 - Select the "Workflows" from the Site Table of Contents.
 - Add a new Workflow and name it accordingly (e.g. "KmlImportWorkflow").
 - For the URI, choose "Browse..." and select the "KmlWorkflowExample.xaml" file that was copied to your Sites directory earlier. Click "Next" and then "Finish.
