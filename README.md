@@ -25,9 +25,11 @@ After installing the "DDS.KmlWorkflow.dll" in the appropriate locations describe
 
 - Start your Geocortex Essentials Manager and open the Site that you will be adding the KML workflow to.
 - Select the "Workflows" from the Site Table of Contents.
+
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/01-workflow-site-tab.png)
 
 - Add a new Workflow and name it accordingly (e.g. "KmlImportWorkflow").
+
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/02-add-workflow.png)
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/03-add-workflow-wizard.png)
 
