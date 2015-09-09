@@ -1,19 +1,22 @@
 # KML to FeatureSet
 
-Converts Google Earth KML/KMZ data to one or more ArcGIS FeatureSets (one for each feature type) so that it can be passed as an input argument into other workflow activites. This includes a custom DLL and sample workflow for Latitude Geographics Geocortex Workflow Designer.
+Converts Google Earth KML/KMZ files to one or more ArcGIS FeatureSets (one for each feature type) so that it can be passed as an input argument into other Geocortex workflow activites. This includes a custom DLL and sample workflow for Latitude Geographics Geocortex Workflow Designer.
 
 ## Installation
 
-To use a custom workflow module, you will need to copy the DDS.KmlWorkflow.dll to the following directories in your Geocortex Essentials installation:
+To use a custom workflow module, you will need to copy the "DDS.KmlWorkflow.dll" to the following directories in your Geocortex Essentials installation. If you have a custom installation of Geocortex Essentials, please adjust your file paths appropriately.
 
-- `...\Geocortex Essentials\Default\REST Elements\REST\bin`
+- `\Geocortex Essentials\Default\REST Elements\REST\bin`
   - Default path is `C:\Program Files (x86)\Latitude Geographics\Geocortex Essentials\Default\REST Elements\REST\bin\`
   - This location makes the dll available to the REST endpoint and your users.
 
-- `..\Geocortex Essentials\Default\Workflow Designer`
+- `\Geocortex Essentials\Default\Workflow Designer`
   - Default path is `C:\Program Files (x86)\Latitude Geographics\Geocortex Essentials\Default\Workflow Designer\`
   - This location makes the module available in the Geocortex Workflow Designer.
 
+To use the sample workflow, you will need to copy the "KmlWorkflowExample.xaml" to your sites folder (`\Geocortex Essentials\Default\REST Elements\Sites\`). We recommend that you place it in a "Workflow" directory under the specific site you plan to use it in.
+
+The "KML.png" is provided as an optional graphic for the Toolbar Button.
 
 
 ## Usage
