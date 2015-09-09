@@ -1,0 +1,376 @@
+﻿<Activity mc:Ignorable="sads sap sap2010" x:Class="ActivityBuilder" mva:VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:dk="clr-namespace:DDS.KmlWorkflow;assembly=DDS.KmlWorkflow"
+ xmlns:eac="clr-namespace:ESRI.ArcGIS.Client;assembly=ESRI.ArcGIS.Client"
+ xmlns:eacg="clr-namespace:ESRI.ArcGIS.Client.Geometry;assembly=ESRI.ArcGIS.Client"
+ xmlns:eact="clr-namespace:ESRI.ArcGIS.Client.Tasks;assembly=ESRI.ArcGIS.Client"
+ xmlns:esri="http://schemas.esri.com/arcgis/client/2009"
+ xmlns:gce="clr-namespace:Geocortex.Core.Extensions;assembly=Geocortex.Core"
+ xmlns:gcx="http://apis.geocortex.com/2009"
+ xmlns:gfc="clr-namespace:Geocortex.Forms.Client;assembly=Geocortex.EssentialsWpfApi"
+ xmlns:gfci="clr-namespace:Geocortex.Forms.Client.Items;assembly=Geocortex.EssentialsWpfApi"
+ xmlns:gr="clr-namespace:Geocortex.Reporting;assembly=Geocortex.Reporting"
+ xmlns:gwa="clr-namespace:Geocortex.Workflow.Activities;assembly=Geocortex.Workflow"
+ xmlns:gwa1="clr-namespace:Geocortex.Workflow.Activities;assembly=Geocortex.Workflow.Activities"
+ xmlns:k="clr-namespace:KmlWorkflow;assembly=DDS.KmlWorkflow"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:s="clr-namespace:System;assembly=System.Core"
+ xmlns:s1="clr-namespace:System;assembly=System"
+ xmlns:s2="clr-namespace:System;assembly=mscorlib"
+ xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sl="clr-namespace:System.Linq;assembly=System.Core"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>ESRI.ArcGIS.Client</x:String>
+      <x:String>ESRI.ArcGIS.Client.Geometry</x:String>
+      <x:String>ESRI.ArcGIS.Client.Tasks</x:String>
+      <x:String>Geocortex.Core.Extensions</x:String>
+      <x:String>Geocortex.Workflow.Activities</x:String>
+      <x:String>Geocortex.Forms.Client</x:String>
+      <x:String>Geocortex.Forms.Client.Items</x:String>
+      <x:String>Geocortex.Reporting</x:String>
+      <x:String>System</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Windows</x:String>
+      <x:String>System.Windows.Threading</x:String>
+      <x:String>ESRI.ArcGIS.Client.Symbols</x:String>
+      <x:String>System.Windows.Media</x:String>
+      <x:String>System.Windows.Media.Animation</x:String>
+      <x:String>System.Windows.Media.Composition</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>ESRI.ArcGIS.Client</AssemblyReference>
+      <AssemblyReference>Geocortex.Core</AssemblyReference>
+      <AssemblyReference>Geocortex.Workflow</AssemblyReference>
+      <AssemblyReference>Geocortex.EssentialsWpfApi</AssemblyReference>
+      <AssemblyReference>Geocortex.Reporting</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Reactive.Core</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="KmlLoaderSequence" sap2010:WorkflowViewState.IdRef="Sequence_1" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="workFlowContainer" />
+      <Variable x:TypeArguments="x:String" Name="buttonResult" />
+      <Variable x:TypeArguments="esri:Envelope" Name="extent" />
+      <Variable x:TypeArguments="s2:Byte[]" Name="buffer" />
+      <Variable x:TypeArguments="x:String" Name="resultText" />
+      <Variable x:TypeArguments="scg:IDictionary(x:String, esri:FeatureSet)" Name="featureSetMap" />
+      <Variable x:TypeArguments="esri:FeatureSet" Name="featureSet" />
+      <Variable x:TypeArguments="scg:IList(gcx:FileItem)" Name="kmlFileList" />
+      <Variable x:TypeArguments="esri:Envelope" Name="globalExtent" />
+    </Sequence.Variables>
+    <gwa1:DisplayForm sap2010:Annotation.AnnotationText="This item will display the File Selector Dialog within the current Web Browser - giving the end user the option to load one or more KML/KMZ files" ButtonResultValue="[buttonResult]" FormDefinition="&lt;FormDefinition xmlns=&quot;http://schemas.datacontract.org/2004/07/Geocortex.Forms.Client&quot; xmlns:i=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;ContainerFormItem xmlns:a=&quot;http://schemas.datacontract.org/2004/07/Geocortex.Forms.Client.Items&quot;&gt;&lt;a:ArgumentName/&gt;&lt;a:IsVisible&gt;true&lt;/a:IsVisible&gt;&lt;a:ItemID&gt;Group1&lt;/a:ItemID&gt;&lt;a:ToolTip/&gt;&lt;a:ValidationItems xmlns:b=&quot;http://schemas.datacontract.org/2004/07/Geocortex.Forms.Client.Items.Validation&quot;/&gt;&lt;a:Description/&gt;&lt;a:FormItems&gt;&lt;a:FormItem i:type=&quot;a:FilePickerFormItem&quot;&gt;&lt;a:ArgumentName&gt;kmlFileToLoad&lt;/a:ArgumentName&gt;&lt;a:IsVisible&gt;true&lt;/a:IsVisible&gt;&lt;a:ItemID&gt;FilePicker1&lt;/a:ItemID&gt;&lt;a:ToolTip/&gt;&lt;a:ValidationItems xmlns:b=&quot;http://schemas.datacontract.org/2004/07/Geocortex.Forms.Client.Items.Validation&quot;&gt;&lt;b:ValidationItem i:type=&quot;b:FileSizeValidationItem&quot;&gt;&lt;b:Message&gt;2MB total file size limit exceeded&lt;/b:Message&gt;&lt;b:TotalFileSize&gt;2097152&lt;/b:TotalFileSize&gt;&lt;/b:ValidationItem&gt;&lt;/a:ValidationItems&gt;&lt;a:AcceptFileTypes&gt;.kml, .kmz&lt;/a:AcceptFileTypes&gt;&lt;a:AllowMultiple&gt;true&lt;/a:AllowMultiple&gt;&lt;a:Label&gt;&lt;a:ArgumentName/&gt;&lt;a:IsVisible&gt;true&lt;/a:IsVisible&gt;&lt;a:ItemID/&gt;&lt;a:ToolTip/&gt;&lt;a:ValidationItems xmlns:b=&quot;http://schemas.datacontract.org/2004/07/Geocortex.Forms.Client.Items.Validation&quot;/&gt;&lt;a:LabelForItemID/&gt;&lt;a:Text&gt;Select one or more KML or KMZ files to upload:&lt;/a:Text&gt;&lt;/a:Label&gt;&lt;/a:FormItem&gt;&lt;/a:FormItems&gt;&lt;a:MaxWidth&gt;INF&lt;/a:MaxWidth&gt;&lt;a:Orientation&gt;Vertical&lt;/a:Orientation&gt;&lt;/ContainerFormItem&gt;&lt;KnownTypes xmlns:a=&quot;http://schemas.microsoft.com/2003/10/Serialization/Arrays&quot;&gt;&lt;a:string&gt;Geocortex.Forms.Client.Items.ContainerFormItem&lt;/a:string&gt;&lt;a:string&gt;Geocortex.Forms.Client.Items.FilePickerFormItem&lt;/a:string&gt;&lt;a:string&gt;Geocortex.Forms.Client.Items.Validation.FileSizeValidationItem&lt;/a:string&gt;&lt;/KnownTypes&gt;&lt;MaxHeight&gt;800&lt;/MaxHeight&gt;&lt;MaxWidth&gt;1000&lt;/MaxWidth&gt;&lt;Title&gt;Select KML File&lt;/Title&gt;&lt;Version&gt;1.1&lt;/Version&gt;&lt;/FormDefinition&gt;" sap2010:WorkflowViewState.IdRef="DisplayForm_1" WorkflowContainerName="[workFlowContainer]">
+      <gwa1:DisplayForm.Body>
+        <ActivityAction x:TypeArguments="gcx:FormDefinition">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="gcx:FormDefinition" Name="form" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="RuntimeModifications" sap2010:WorkflowViewState.IdRef="Sequence_2" />
+        </ActivityAction>
+      </gwa1:DisplayForm.Body>
+      <gwa1:DisplayForm.Buttons>
+        <gcx:FormButton CausesValidation="False" IsDefault="False" Label="Cancel" Value="Cancel" />
+        <gcx:FormButton CausesValidation="True" IsDefault="True" Label="Upload" Value="Upload" />
+      </gwa1:DisplayForm.Buttons>
+      <gwa1:DisplayForm.FormOutArguments>
+        <gwa:ArgumentWrapper x:TypeArguments="OutArgument" IsRequired="False" Name="kmlFileToLoad">
+          <gwa:ArgumentWrapper.Argument>
+            <OutArgument x:TypeArguments="scg:IList(gcx:FileItem)">[kmlFileList]</OutArgument>
+          </gwa:ArgumentWrapper.Argument>
+        </gwa:ArgumentWrapper>
+      </gwa1:DisplayForm.FormOutArguments>
+    </gwa1:DisplayForm>
+    <If sap2010:Annotation.AnnotationText="Check if the end user cancelled the File Selector Dialog" Condition="[buttonResult = &quot;Cancel&quot;]" sap2010:WorkflowViewState.IdRef="If_13">
+      <If.Then>
+        <gwa1:ExitWorkflow sap2010:WorkflowViewState.IdRef="ExitWorkflow_2" />
+      </If.Then>
+    </If>
+    <dk:KmlFileWorkflow sap2010:Annotation.AnnotationText="There are no Excpetions thrown from this custom Activity.  The returned FeatureSet Dictionary will always be non-null - but will be empty if the input File could not be parsed" FeatureSetMap="[featureSetMap]" FileItems="[kmlFileList]" sap2010:WorkflowViewState.IdRef="KmlFileWorkflow_4" ResultText="[resultText]" />
+    <If sap2010:Annotation.AnnotationText="This is an optional control flow which will display a Dialog showing the import File results.  Set the Boolean condition to 'True' to enable the display of the Dialog - or to 'False' to continue without feedback" Condition="True" sap2010:WorkflowViewState.IdRef="If_12">
+      <If.Then>
+        <gwa1:Alert sap2010:WorkflowViewState.IdRef="Alert_10" Text="[resultText]" Title="KML Import Results" />
+      </If.Then>
+    </If>
+    <If sap2010:Annotation.AnnotationText="Check if there were no results returned - and if so exit the Workflow" Condition="[featureSetMap.Count = 0]" sap2010:WorkflowViewState.IdRef="If_16">
+      <If.Then>
+        <gwa1:ExitWorkflow sap2010:WorkflowViewState.IdRef="ExitWorkflow_3" />
+      </If.Then>
+    </If>
+    <Assign sap2010:Annotation.AnnotationText="Start with an 'empty' Extent" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="esri:Envelope">[globalExtent]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="esri:Envelope">[Nothing]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ForEach x:TypeArguments="scg:KeyValuePair(x:String, esri:FeatureSet)" sap2010:Annotation.AnnotationText="Enumerate thru the returned FeatureSet / Layer name Dictionary (which will contain 1 - 3 result items)" DisplayName="ForEach&lt;KeyValuePair&lt;String,FeatureSet&gt;&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[featureSetMap]">
+      <ActivityAction x:TypeArguments="scg:KeyValuePair(x:String, esri:FeatureSet)">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="scg:KeyValuePair(x:String, esri:FeatureSet)" Name="item" />
+        </ActivityAction.Argument>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <Switch x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="The HTML5 Viewer currently does not support the rendering of individual Geometry based-on the information stored in the returned FeatureSets - so a Switch statement is used to provide semi-custom rendering for the Point/Line/Polygons.&#xA;&#xA;The Renderers in the individual Case statements can be modified to change to displayed output for each Geometry group." Expression="[item.Key.SubString(item.Key.Length - 1).ToUpper()]" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+            <gwa1:UpdateGraphicsLayer x:Key="0" sap2010:Annotation.AnnotationText="Point Layer" FeatureSet="[item.Value]" GraphicsLayerId="[item.Key]" sap2010:WorkflowViewState.IdRef="UpdateGraphicsLayer_3" Renderer="[New ESRI.ArcGIS.Client.SimpleRenderer() With { .Symbol = new ESRI.ArcGIS.Client.Symbols.SimpleMarkerSymbol() With { .Color = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 27, 125, 190)), .Size = 10.0, .Style = ESRI.ArcGIS.Client.Symbols.SimpleMarkerSymbol.SimpleMarkerStyle.Circle } }]" RendererTakesPrecedence="[True]" />
+            <gwa1:UpdateGraphicsLayer x:Key="1" sap2010:Annotation.AnnotationText="Line Layer" FeatureSet="[item.Value]" GraphicsLayerId="[item.Key]" sap2010:WorkflowViewState.IdRef="UpdateGraphicsLayer_4" Renderer="[New ESRI.ArcGIS.Client.SimpleRenderer() With { .Symbol = new ESRI.ArcGIS.Client.Symbols.SimpleLineSymbol() With { .Color = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 65, 145, 201)) With { .Opacity = 0.5 }, .Style = ESRI.ArcGIS.Client.Symbols.SimpleLineSymbol.LineStyle.Solid, .Width = 2.0 } }]" RendererTakesPrecedence="[True]" />
+            <gwa1:UpdateGraphicsLayer x:Key="2" sap2010:Annotation.AnnotationText="Polygon Layer" FeatureSet="[item.Value]" GraphicsLayerId="[item.Key]" sap2010:WorkflowViewState.IdRef="UpdateGraphicsLayer_5" Renderer="[New ESRI.ArcGIS.Client.SimpleRenderer() With { .Symbol = new ESRI.ArcGIS.Client.Symbols.SimpleFillSymbol() With { .BorderBrush = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 65, 145, 201)), .BorderThickness = 1.0, .Fill = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 139, 188, 222)) With { .Opacity = 0.5 } } }]" RendererTakesPrecedence="[True]" />
+          </Switch>
+          <If sap2010:Annotation.AnnotationText="If this Boolean condition is set to 'True' - the FeatureSets are selected (meaning that Placemarks are placed next each individual Geometry and that the Result List is automatically opened with the output results).&#xA;&#xA;If the condition is set to 'False' - the FeatureSet Geometry is still rendered - the focus is just not set on it" Condition="True" sap2010:WorkflowViewState.IdRef="If_11">
+            <If.Then>
+              <gwa1:SelectFeatures ClearCollectionFirst="False" CollectionName="Kml Imports" FeatureSet="[item.Value]" FeatureSetDisplayName="KML Feature Set" sap2010:WorkflowViewState.IdRef="SelectFeatures_2" LayerId="[item.Key]" ShowPushpins="True" />
+            </If.Then>
+          </If>
+          <Sequence sap2010:Annotation.AnnotationText="Update the 'Global' Extent if there are multiple FeatureSets" sap2010:WorkflowViewState.IdRef="Sequence_14">
+            <gwa1:GetFeatureSetExtent FeatureSet="[item.Value]" sap2010:WorkflowViewState.IdRef="GetFeatureSetExtent_2" Result="[extent]" />
+            <If Condition="[globalExtent is Nothing]" sap2010:WorkflowViewState.IdRef="If_20">
+              <If.Then>
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="esri:Envelope">[globalExtent]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="esri:Envelope">[extent]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </If.Then>
+              <If.Else>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <If Condition="[extent.XMin &lt; globalExtent.XMin]" sap2010:WorkflowViewState.IdRef="If_17">
+                    <If.Then>
+                      <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">[globalExtent.XMin]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">[extent.XMin]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                  </If>
+                  <If Condition="[extent.XMax &gt; globalExtent.XMax]" sap2010:WorkflowViewState.IdRef="If_18">
+                    <If.Then>
+                      <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">[globalExtent.XMax]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">[extent.XMax]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                  </If>
+                  <If Condition="[extent.YMin &lt; globalExtent.YMin]" sap2010:WorkflowViewState.IdRef="If_19">
+                    <If.Then>
+                      <Assign sap2010:WorkflowViewState.IdRef="Assign_7">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">[globalExtent.YMin]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">[extent.YMin]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                  </If>
+                  <If Condition="[extent.YMax &gt; globalExtent.YMax]" sap2010:WorkflowViewState.IdRef="If_21">
+                    <If.Then>
+                      <Assign sap2010:WorkflowViewState.IdRef="Assign_8">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">[globalExtent.YMax]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">[extent.YMax]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                  </If>
+                </Sequence>
+              </If.Else>
+            </If>
+          </Sequence>
+        </Sequence>
+      </ActivityAction>
+    </ForEach>
+    <gwa1:SetMapExtent sap2010:Annotation.AnnotationText="Zoom-out on the FeatureSet for a more centered display (the Double value in the 'Expand' field can be tweaked as needed)." Extent="[globalExtent.Expand(2.0)]" sap2010:WorkflowViewState.IdRef="SetMapExtent_2" />
+    <gwa1:ExitWorkflow sap2010:WorkflowViewState.IdRef="ExitWorkflow_1" />
+    <sads:DebugSymbol.Symbol>dzREOlxHZW9jb3J0ZXggQ3VzdG9tIFdvcmtmbG93c1xLbWxDdXN0b21Xb3JrZmxvdy54YW1sV08D4QEOAgEBWwVvGAIBWnAFdAoCAVZ1BXX3AgIBUXYFegoCAUt7BX8KAgFIgAEFhwEOAgFEiAEF3QEPAgEG3gEF3gGNAgIBA98BBd8BSwIBAlv/AVuXFAIBYVveFFvzFAIBX1vfAVvvAQIBXWtEa1ECAVxhC2FnAgFbcHBwlQECAVdyCXJPAgFZdfsBdYwCAgFVdeYCdfQCAgFTdZcCdaYCAgFSdosCdpECAgFMeAl4cQIBTXt9e5gBAgFJfQl9TwIBSoUBNYUBPgIBR4IBNoIBRAIBRYgBzwKIAeACAgFDjQEJ2wEUAgEH3gG9Ad4B2QECAQR4RXhTAgFPeFp4bgIBTo4BC5IBFAIBMpMBC5cBEAIBKZgBC9oBFgIBCI4ByAOOAf0DAgEzjwENjwHBBAIBPpABDZABywQCATmRAQ2RAYMFAgE0kwGOA5MBlAMCASqVAQ+VAf4BAgErmQENmQGNAQIBJZoBDdkBEgIBCY8BtgSPAb4EAgFCjwGLAY8BlwECAUGPAWyPAXoCAUCPAdkBjwGdBAIBP5ABwASQAcgEAgE9kAGKAZABlgECATyQAWuQAXkCATuQAdgBkAGnBAIBOpEB+ASRAYAFAgE4kQGNAZEBmQECATeRAW6RAXwCATaRAdsBkQHfBAIBNZUB2wGVAecBAgExlQGOAZUBnwECATCVAVCVAV0CAS+VAWmVAXcCAS6VAfUBlQH7AQIBLZUBOZUBQAIBLJkBgAGZAYoBAgEnmQEymQFAAgEmmgEbmgE2AgEKnAERowEaAgEgpgER1wEcAgELoQFBoQFJAgEjngFCngFQAgEhpwETsgEYAgEbswETvgEYAgEWvwETygEYAgERywET1gEYAgEMpwEhpwFHAgEcqQEXsAEgAgEdswEhswFHAgEXtQEXvAEgAgEYvwEhvwFHAgESwQEXyAEgAgETywEhywFHAgENzQEX1AEgAgEOrgFCrgFPAgEfqwFDqwFWAgEeugFCugFPAgEatwFDtwFWAgEZxgFCxgFPAgEVwwFDwwFWAgEU0gFC0gFPAgEQzwFDzwFWAgEP</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="DisplayForm_1" sap:VirtualizedContainerService.HintSize="827,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExitWorkflow_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_13" sap:VirtualizedContainerService.HintSize="827,208">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="KmlFileWorkflow_4" sap:VirtualizedContainerService.HintSize="827,22">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Alert_10" sap:VirtualizedContainerService.HintSize="212,86" />
+      <sap2010:ViewStateData Id="If_12" sap:VirtualizedContainerService.HintSize="827,234">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExitWorkflow_3" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_16" sap:VirtualizedContainerService.HintSize="827,208">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="827,60">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="UpdateGraphicsLayer_3" sap:VirtualizedContainerService.HintSize="296,136">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="UpdateGraphicsLayer_4" sap:VirtualizedContainerService.HintSize="296,136">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="UpdateGraphicsLayer_5" sap:VirtualizedContainerService.HintSize="296,136">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Switch`1_1" sap:VirtualizedContainerService.HintSize="775,182">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SelectFeatures_2" sap:VirtualizedContainerService.HintSize="313,161" />
+      <sap2010:ViewStateData Id="If_11" sap:VirtualizedContainerService.HintSize="775,309">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetFeatureSetExtent_2" sap:VirtualizedContainerService.HintSize="753,86" />
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_17" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_18" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_19" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_21" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Sequence_13" sap:VirtualizedContainerService.HintSize="486,1076">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_20" sap:VirtualizedContainerService.HintSize="753,1224" />
+      <sap2010:ViewStateData Id="Sequence_14" sap:VirtualizedContainerService.HintSize="775,1474">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_11" sap:VirtualizedContainerService.HintSize="797,2169">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_2" sap:VirtualizedContainerService.HintSize="827,2317">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SetMapExtent_2" sap:VirtualizedContainerService.HintSize="827,61">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExitWorkflow_1" sap:VirtualizedContainerService.HintSize="827,22" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="849,3627">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ActivityBuilder_1" sap:VirtualizedContainerService.HintSize="889,3707" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>
