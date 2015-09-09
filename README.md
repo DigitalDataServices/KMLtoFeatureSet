@@ -19,16 +19,36 @@ To use the sample workflow, you will need to copy the "KmlWorkflowExample.xaml" 
 The "KML.png" is provided as an optional graphic for the Toolbar Button.
 
 
+## Sample Script
+
+The following steps show how to add a the KML Import Workflow to a Geocortex Site with an HTML5 Viewer as a Toolbar Button
+
+- Start your Geocortex Essentials Manager and open the Site that you will be adding the KML workflow to.
+- Select the "Workflows" from the Site Table of Contents.
+- Add a new Workflow and name it accordingly (e.g. "KmlImportWorkflow").
+- For the URI, choose "Browse..." and select the "KmlWorkflowExample.xaml" file that was copied to your Sites directory earlier. Click "Next" and then "Finish.
+- Save the modified Site.
+- Next, attach the KmlImportWorkflow to a Viewer Toolbar Button.
+- Select the "Viewers" Site Tab
+- "Edit" the Viewer that will contain the KML Import Button.
+- Select the "Toolbar" Viewer Tab under the "Viewer for HTML5 ..." Header.
+- Next add a new "Tab" to the Toolbar (optionally, you can add a new Button to an existing Tab).
+- Add a new "Group" to the Tab.
+- Add a new "Button" to the Group.
+- The "Name" and "Tooltip" fields are user-defined.
+- The "Image Uri" field should point to an icon image for the Button (e.g. the "KML.png" file that is provided in the Github repository). You may need to "Upload" the image to your '\Sites\...\VirtualDirectory' or other public location if the image does not exist.
+- The "Command" field should be set to `RunWorkflowById`.
+- The "Command Parameter" should be the name of the KML Workflow defined in the Site (e.g. `KmlImportWorkflow`).
+- Click the "Apply Changes" Button in the lower-right.
+- Click the "Save Site" in the upper-right.
+- You are now ready to launch the newly configured Site and Workflow! To load a KML or KMZ file click on the Toolbar Button in the upper-right side of the Viewer and select the new Tab and Button you created.
+
+
 ## Usage
 
-```javascript
-var ProjectName = require('project-name')
-var projectName = new ProjectName()
-
-// YOUR CODE
 ```
-
-## Sample Script
+Coming soon...
+```
 
 ## Change Log
 
