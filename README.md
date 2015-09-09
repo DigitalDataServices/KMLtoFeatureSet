@@ -4,9 +4,16 @@ Converts Google Earth KML/KMZ data to one or more ArcGIS FeatureSets (one for ea
 
 ## Installation
 
-To use the KML To FeatureSet workflow module, you will need to copy the DDS.KmlWorkflow.dll to the following directories:
+To use a custom workflow module, you will need to copy the DDS.KmlWorkflow.dll to the following directories in your Geocortex Essentials installation:
 
-- \Geocortex\Rest\bin
+- `...\Geocortex Essentials\Default\REST Elements\REST\bin`
+  - Default path is `C:\Program Files (x86)\Latitude Geographics\Geocortex Essentials\Default\REST Elements\REST\bin\`
+  - This location makes the dll available to the REST endpoint and your users.
+
+- `..\Geocortex Essentials\Default\Workflow Designer`
+  - Default path is `C:\Program Files (x86)\Latitude Geographics\Geocortex Essentials\Default\Workflow Designer\`
+  - This location makes the module available in the Geocortex Workflow Designer.
+
 
 
 ## Usage
@@ -18,6 +25,7 @@ var projectName = new ProjectName()
 // YOUR CODE
 ```
 
+## Sample Script
 
 ## Change Log
 
