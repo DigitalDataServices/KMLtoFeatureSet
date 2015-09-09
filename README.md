@@ -26,35 +26,48 @@ After installing the "DDS.KmlWorkflow.dll" in the appropriate locations describe
 - Start your Geocortex Essentials Manager and open the Site that you will be adding the KML workflow to.
 - Select the "Workflows" from the Site Table of Contents.
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/01-workflow-site-tab.png)
+
 - Add a new Workflow and name it accordingly (e.g. "KmlImportWorkflow").
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/02-add-workflow.png)
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/03-add-workflow-wizard.png)
+
 - For the URI, choose "Browse..." and select the "KmlWorkflowExample.xaml" file that was copied to your Sites directory earlier. Click "Next" and then "Finish.
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/04-browse-workflow-location.png)
+
 - Save the modified Site.
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/05-save-site.png)
+
 - Next, attach the KmlImportWorkflow to a Viewer Toolbar Button. Select the "Viewers" Site Tab
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/06-add-to-viewer.png)
+
 - "Edit" the Viewer that will contain the KML Import Button.
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/07-edit-viewer.png)
+
 - Select the "Toolbar" Viewer Tab under the "Viewer for HTML5 ..." Header.
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/08-site-toolbar.png)
+
 - Next add a new "Tab" to the Toolbar (optionally, you can add a new Button to an existing Tab).
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/09-add-tab1.png)
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/10-add-tab2.png)
+
 - Add a new "Group" to the Tab.
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/11-edit-group.png)
+
 - Add a new "Button" to the Group.
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/12-edit-button.png)
+
 - The "Name" and "Tooltip" fields are user-defined.
 - The "Image Uri" field should point to an icon image for the Button (e.g. the "KML.png" file that is provided in the Github repository). You may need to "Upload" the image to your '\Sites\...\VirtualDirectory' or other public location if the image does not exist.
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/13-select-file.png)
+
 - The "Command" field should be set to `RunWorkflowById`.
 - The "Command Parameter" should be the name of the KML Workflow defined in the Site (e.g. `KmlImportWorkflow`).
 - Click the "Apply Changes" Button in the lower-right.
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/14-apply-changes.png)
+
 - Click the "Save Site" in the upper-right.
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/15-save-site.png)
+
 - You are now ready to launch the newly configured Site and Workflow! To load a KML or KMZ file click on the Toolbar Button in the upper-right side of the Viewer and select the new Tab and Button you created.
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/16-open-toolbar.png)
   ![](https://raw.githubusercontent.com/DigitalDataServices/KMLtoFeatureSet/master/img/17-toolbar.png)
